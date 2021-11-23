@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     start_date: DataTypes.DATEONLY,
     start_time: DataTypes.STRING,
     meeting_duration: DataTypes.STRING,
-    meeting_id: DataTypes.INTEGER,
+    meeting_id: DataTypes.BIGINT,
     meeting_passcode: DataTypes.STRING
   }, {
     sequelize,

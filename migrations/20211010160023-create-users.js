@@ -30,6 +30,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      subscription: {
+        allowNull: true,
+        type: Sequelize.ENUM('Day', 'Night'),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const { createUsers, getUsers, loginUsers, updateUser, deleteUser, getUserRole } = require("../services/User");
+const { createUsers, getUsers, loginUsers, updateUser, deleteUser, getUserRole, getUserSubscription } = require("../services/User");
 const { createMeeting, getMeeting, updateMeeting,deleteMeeting } = require("../services/Meeting");
 const { createPosts, getPost, updatePosts,deletePosts } = require("../services/Posts");
 
@@ -36,6 +36,12 @@ routes.delete("/users/delete/:id", (req, res) => {
 
 routes.get("/users/role/:id", (req, res) => {
   getUserRole(req.params, (result) => {
+    res.status(result.statusCode).send(result.body);
+  });
+});
+
+routes.get("/users/subscription/:id", (req, res) => {
+  getUserSubscription(req.params, (result) => {
     res.status(result.statusCode).send(result.body);
   });
 });

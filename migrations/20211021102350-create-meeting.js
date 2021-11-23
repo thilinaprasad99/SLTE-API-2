@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       meeting_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       meeting_passcode: {
         type: Sequelize.STRING
