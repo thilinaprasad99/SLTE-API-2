@@ -43,6 +43,7 @@ module.exports = {
           meeting_duration: info.meeting_duration,
           meeting_id: info.meeting_id,
           meeting_passcode: info.meeting_passcode,
+          subscription: info.subscription,
         },
         {
           where: {id: info.id}

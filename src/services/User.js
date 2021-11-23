@@ -77,6 +77,7 @@ module.exports = {
           city: info.city,
           phone: info.phone,
           role: info.role,
+          subscription: info.subscription,
         },
         {
           where: {id: info.id}

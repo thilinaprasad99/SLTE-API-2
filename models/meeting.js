@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     start_time: DataTypes.STRING,
     meeting_duration: DataTypes.STRING,
     meeting_id: DataTypes.BIGINT,
-    meeting_passcode: DataTypes.STRING
+    meeting_passcode: DataTypes.STRING,
+    subscription: DataTypes.ENUM('Day', 'Night')
   }, {
     sequelize,
     modelName: 'Meeting',

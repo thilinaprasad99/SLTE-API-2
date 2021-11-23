@@ -29,6 +29,10 @@ module.exports = {
       meeting_passcode: {
         type: Sequelize.STRING
       },
+      subscription: {
+        allowNull: true,
+        type: Sequelize.ENUM('Day', 'Night'),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
