@@ -114,5 +114,30 @@ module.exports = {
     }
   },
 
+  getUserRole: async (info, callback) => {
+    try {
+      const user = await models.Users.findOne({
+        where: {id: info.id},
+      });
+
+      if (user) {
+        callback({
+          statusCode: Constants.errorStatus.SUCCESS,
+          body: user,
+        });
+      } else {
+        callback({
+          statusCode: Constants.errorStatus.NOT_FOUND,
+          body: null,
+        });
+      }
+    } catch (error) {
+      callback({
+        statusCode: Constants.errorStatus.SERVER_ERROR,
+        body: error,
+      });
+    }
+  },
+
 };
 
