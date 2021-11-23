@@ -118,6 +118,7 @@ module.exports = {
     try {
       const user = await models.Users.findOne({
         where: {id: info.id},
+        attributes: ['role'],
       });
 
       if (user) {
