@@ -37,7 +37,9 @@ module.exports = {
       const postsUpdate = await models.Posts.update(
         {
           title: info.title,
-          description: info.description
+          description: info.description,
+          coverImage: info.coverImage,
+          attachment: info.attachment
         },
         {
           where: {id: info.id}

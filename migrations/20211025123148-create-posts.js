@@ -14,6 +14,12 @@ module.exports = {
       description: {
         type: Sequelize.TEXT('long')
       },
+      coverImage: {
+        type: Sequelize.TEXT('long')
+      },
+      attachment: {
+        type: Sequelize.TEXT('long')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
