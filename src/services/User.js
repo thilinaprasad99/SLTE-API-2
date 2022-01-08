@@ -44,11 +44,11 @@ module.exports = {
   loginUsers: async (info, callback) => {
     try {
       const user = await models.Users.findOne({
+        raw: true,
         where: [info],
       });
-
       if (user && user?.isLoggedIn === 0) {
-        await models.Users.update({isLoggedIn:true},{where:[info]})
+        await models.Users.update({isLoggedIn:true},{where:[info]});
         callback({
           statusCode: Constants.errorStatus.SUCCESS,
           body: user,
