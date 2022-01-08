@@ -19,7 +19,7 @@ module.exports = {
 
   getPost: async (info, callback) => {
     try {
-      const Posts = await models.Posts.findAll({});
+      const Posts = await models.Posts.findAll({order:[['id','DESC']]});
       callback({
         statusCode: Constants.errorStatus.SUCCESS,
         body: Posts,
