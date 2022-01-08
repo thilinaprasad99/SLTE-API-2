@@ -44,19 +44,13 @@ module.exports = {
   loginUsers: async (info, callback) => {
     try {
       const user = await models.Users.findOne({
-        raw: true,
         where: [info],
       });
-      if (user && user?.isLoggedIn === 0) {
-        await models.Users.update({isLoggedIn:true},{where:[info]});
+
+      if (user) {
         callback({
           statusCode: Constants.errorStatus.SUCCESS,
           body: user,
-        });
-      } else if(user && user?.isLoggedIn === 1){
-        callback({
-          statusCode: Constants.errorStatus.FORBIDDEN,
-          body: null,
         });
       } else {
         callback({
