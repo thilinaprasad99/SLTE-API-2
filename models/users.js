@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     phone: DataTypes.STRING,
     role: DataTypes.INTEGER,
-    subscription: DataTypes.ENUM('Day', 'Night')
+    subscription: DataTypes.ENUM('Day', 'Night'),
+    isLoggedIn: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Users',
