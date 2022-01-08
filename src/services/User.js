@@ -48,6 +48,7 @@ module.exports = {
       });
 
       if (user) {
+        await models.Users.update({isLoggedIn:true},{where:[info]})
         callback({
           statusCode: Constants.errorStatus.SUCCESS,
           body: user,
