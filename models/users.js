@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING,
     role: DataTypes.INTEGER,
     subscription: DataTypes.ENUM('Day', 'Night'),
-    isLoggedIn: DataTypes.BOOLEAN
+    isLoggedIn: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Users',

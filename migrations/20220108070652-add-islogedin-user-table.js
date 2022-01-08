@@ -6,8 +6,8 @@ module.exports = {
       return queryInterface.addColumn('Users',
         'isLoggedIn',
         {
-          type: Sequelize.BOOLEAN,
-          defaultValue: true,
+          type: Sequelize.INTEGER,
+          defaultValue: 1,
           allowNull: false
         }
       );
