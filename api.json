@@ -10,7 +10,7 @@
     "HOST": {
       "server_url": "http://127.0.0.1"
     },
-    "ALLOW_ORIGINS": ["http://localhost:3000", "http://localhost:8080"],
+    "ALLOW_ORIGINS": ["http://localhost:3000", "http://localhost:8080", "*"],
     "KEY_CLOAK": {
       "URI": "http://localhost:8080/auth/",
       "REALM": "cws",

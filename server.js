@@ -6,14 +6,19 @@ const fileUpload = require('express-fileupload');
 // const session = require('express-session');
 const figlet = require('figlet');
 const CONFIG = require('./api.json');
+const xmlparser = require('express-xml-bodyparser');
+var bodyParser = require('body-parser');
+
 
 // const memoryStore = new session.MemoryStore();
 
 const routes = require('./src/routes');
 
 const app = express();
-
-app.use(express.json());
+// app.use(xmlparser());
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+// app.use(express.json());
 // app.use(
 //   session({
 //     secret: 'some secret',
@@ -29,21 +34,22 @@ app.use(express.json());
 // );
 
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin) return callback(null, true);
-      if (CONFIG.env.ALLOW_ORIGINS.indexOf(origin) === -1) {
-        const msg = 'The CORS policy for this site does not '
-          + 'allow access from the specified Origin.';
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    credentials: true,
-    exposedHeaders: ['x-auth'],
-  }),
-);
+// app.use(
+//   cors({
+//     origin(origin, callback) {
+//       if (!origin) return callback(null, true);
+//       if (CONFIG.env.ALLOW_ORIGINS.indexOf(origin) === -1) {
+//         const msg = 'The CORS policy for this site does not '
+//           + 'allow access from the specified Origin.';
+//         return callback(new Error(msg), false);
+//       }
+//       return callback(null, true);
+//     },
+//     credentials: true,
+//     exposedHeaders: ['x-auth'],
+//   }),
+// );
+app.options('*', cors())
 
 // app.use(keycloak.middleware());
 app.use(fileUpload());
