@@ -3,6 +3,7 @@ const { createUsers, getUsers, loginUsers, updateUser, deleteUser, getUserRole, 
 const { createMeeting, getMeeting, updateMeeting,deleteMeeting } = require("../services/Meeting");
 const { createPosts, getPost, updatePosts,deletePosts } = require("../services/Posts");
 const { addResult } = require("../services/Paper");
+const { getDiscussions } = require("../services/Discussion");
 
 
 routes.post("/users/create", (req, res) => {
@@ -99,6 +100,12 @@ routes.post("/paper/results", (req, res) => {
       res.status(result.statusCode).send(result.body);
     });
  });
+
+ routes.get("/discussions/:id", (req, res) => {
+  getDiscussions(req.params, (result) => {
+    res.status(result.statusCode).send(result.body);
+  });
+});
 
 
 module.exports = routes;
