@@ -6,7 +6,7 @@ module.exports = {
   getDiscussions: async (info, callback) => {
     try {
       const query =
-        "SELECT * FROM Discussions INNER JOIN results ON Discussions.quiz_title = results.quiz_title WHERE results.index_number =:userId;";
+        "SELECT * FROM Discussions INNER JOIN Results ON Discussions.quiz_title = Results.quiz_title WHERE Results.index_number =:userId;";
       const data = await sequelize.query(query, {
         replacements: {
           userId: info.id,
