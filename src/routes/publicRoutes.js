@@ -1,10 +1,27 @@
 const routes = require("express").Router();
-const { createUsers, getUsers, loginUsers, updateUser, deleteUser, getUserRole, getUserSubscription } = require("../services/User");
-const { createMeeting, getMeeting, updateMeeting,deleteMeeting } = require("../services/Meeting");
-const { createPosts, getPost, updatePosts,deletePosts } = require("../services/Posts");
+const {
+  createUsers,
+  getUsers,
+  loginUsers,
+  updateUser,
+  deleteUser,
+  getUserRole,
+  getUserSubscription,
+} = require("../services/User");
+const {
+  createMeeting,
+  getMeeting,
+  updateMeeting,
+  deleteMeeting,
+} = require("../services/Meeting");
+const {
+  createPosts,
+  getPost,
+  updatePosts,
+  deletePosts,
+} = require("../services/Posts");
 const { addResult } = require("../services/Paper");
 const { getDiscussions } = require("../services/Discussion");
-
 
 routes.post("/users/create", (req, res) => {
   createUsers(req.body, (result) => {
@@ -96,16 +113,15 @@ routes.delete("/post/delete/:id", (req, res) => {
 });
 
 routes.post("/paper/results", (req, res) => {
-    addResult(req.body, (result) => {
-      res.status(result.statusCode).send(result.body);
-    });
- });
-
- routes.get("/discussions/:id", (req, res) => {
-  getDiscussions(req.params, (result) => {
+  addResult(req.body, (result) => {
     res.status(result.statusCode).send(result.body);
   });
 });
 
+routes.get("/discussions/:id", (req, res) => {
+  getDiscussions(req.params, (result) => {
+    res.status(result.statusCode).send(result.body);
+  });
+});
 
 module.exports = routes;
