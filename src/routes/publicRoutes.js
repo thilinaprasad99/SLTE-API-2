@@ -7,7 +7,7 @@ const {
   deleteUser,
   getUserRole,
   getUserSubscription,
-  approveUser
+  approveUser,
 } = require("../services/User");
 const {
   createMeeting,
@@ -23,6 +23,7 @@ const {
 } = require("../services/Posts");
 const { addResult } = require("../services/Paper");
 const { getDiscussions } = require("../services/Discussion");
+const { loginAdmin } = require("../services/Admin");
 
 routes.post("/users/create", (req, res) => {
   createUsers(req.body, (result) => {
@@ -114,7 +115,7 @@ routes.delete("/post/delete/:id", (req, res) => {
 });
 
 routes.post("/paper/results", (req, res) => {
-	console.log(req.body)
+  console.log(req.body);
   addResult(req.body, (result) => {
     res.status(result.statusCode).send(result.body);
   });
@@ -128,6 +129,12 @@ routes.get("/discussions/:id", (req, res) => {
 
 routes.post("/user/approval", (req, res) => {
   approveUser(req.body, (result) => {
+    res.status(result.statusCode).send(result.body);
+  });
+});
+
+routes.post("/admin/login", (req, res) => {
+  loginAdmin(req.body, (result) => {
     res.status(result.statusCode).send(result.body);
   });
 });
