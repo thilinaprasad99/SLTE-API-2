@@ -167,5 +167,28 @@ module.exports = {
     }
   },
 
+approveUser: async (info, callback) => {
+    try {
+      const user = await models.Users.update(
+        {
+          role: 1,
+        },
+        {
+          where: { id: info.id },
+        }
+      );
+
+      callback({
+        statusCode: Constants.errorStatus.SUCCESS,
+        body: user,
+      });
+    } catch (error) {
+      callback({
+        statusCode: Constants.errorStatus.SERVER_ERROR,
+        body: error,
+      });
+    }
+  },
+
 };
 
