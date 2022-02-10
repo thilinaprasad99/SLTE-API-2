@@ -7,6 +7,7 @@ const {
   deleteUser,
   getUserRole,
   getUserSubscription,
+  approveUser,
 } = require("../services/User");
 const {
   createMeeting,
@@ -120,6 +121,12 @@ routes.post("/paper/results", (req, res) => {
 
 routes.get("/discussions/:id", (req, res) => {
   getDiscussions(req.params, (result) => {
+    res.status(result.statusCode).send(result.body);
+  });
+});
+
+routes.post("/user/approval", (req, res) => {
+  approveUser(req.body, (result) => {
     res.status(result.statusCode).send(result.body);
   });
 });

@@ -4,21 +4,23 @@ const Constants = require("../lib/Constants");
 module.exports = {
   createUsers: async (info, callback) => {
     try {
-      const createdUser = await models.Users.findOne({where: {email: info.email}}).then(user =>{
-        if(!user){
-           models.Users.create(info)
+      const createdUser = await models.Users.findOne({
+        where: { email: info.email },
+      }).then((user) => {
+        if (!user) {
+          models.Users.create(info);
           callback({
             statusCode: Constants.errorStatus.SUCCESS,
             body: null,
           });
-        }else {
+        } else {
           callback({
             statusCode: Constants.errorStatus.UNAUTHORIZED,
             body: null,
           });
         }
-      })
-    }catch (error) {
+      });
+    } catch (error) {
       callback({
         statusCode: Constants.errorStatus.SERVER_ERROR,
         body: error,
@@ -80,7 +82,7 @@ module.exports = {
           subscription: info.subscription,
         },
         {
-          where: {id: info.id}
+          where: { id: info.id },
         }
       );
       callback({
@@ -98,11 +100,9 @@ module.exports = {
 
   deleteUser: async (info, callback) => {
     try {
-      const data = await models.Users.destroy(
-        {
-          where: {id: info.id}
-        }
-      );
+      const data = await models.Users.destroy({
+        where: { id: info.id },
+      });
       callback({
         statusCode: Constants.errorStatus.SUCCESS,
         body: {},
@@ -118,8 +118,8 @@ module.exports = {
   getUserRole: async (info, callback) => {
     try {
       const user = await models.Users.findOne({
-        where: {id: info.id},
-        attributes: ['role'],
+        where: { id: info.id },
+        attributes: ["role"],
       });
 
       if (user) {
@@ -144,8 +144,8 @@ module.exports = {
   getUserSubscription: async (info, callback) => {
     try {
       const user = await models.Users.findOne({
-        where: {id: info.id},
-        attributes: ['subscription'],
+        where: { id: info.id },
+        attributes: ["subscription"],
       });
 
       if (user) {
@@ -167,5 +167,26 @@ module.exports = {
     }
   },
 
-};
+  approveUser: async (info, callback) => {
+    try {
+      const user = await models.Users.update(
+        {
+          role: 1,
+        },
+        {
+          where: { id: info.id },
+        }
+      );
 
+      callback({
+        statusCode: Constants.errorStatus.SUCCESS,
+        body: user,
+      });
+    } catch (error) {
+      callback({
+        statusCode: Constants.errorStatus.SERVER_ERROR,
+        body: error,
+      });
+    }
+  },
+};
