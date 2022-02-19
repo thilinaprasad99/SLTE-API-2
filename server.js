@@ -1,18 +1,17 @@
-const http = require('http');
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload');
+const http = require("http");
+const express = require("express");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 // const session = require('express-session');
-const figlet = require('figlet');
-const CONFIG = require('./api.json');
-const xmlparser = require('express-xml-bodyparser');
-var bodyParser = require('body-parser');
-
+const figlet = require("figlet");
+const CONFIG = require("./api.json");
+const xmlparser = require("express-xml-bodyparser");
+var bodyParser = require("body-parser");
 
 // const memoryStore = new session.MemoryStore();
 
-const routes = require('./src/routes');
+const routes = require("./src/routes");
 
 const app = express();
 // app.use(xmlparser());
@@ -33,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //   memoryStore,
 // );
 
-
 // app.use(
 //   cors({
 //     origin(origin, callback) {
@@ -49,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //     exposedHeaders: ['x-auth'],
 //   }),
 // );
-app.options('*', cors())
+app.options("*", cors());
 
 // app.use(keycloak.middleware());
 app.use(fileUpload());
@@ -58,24 +56,23 @@ app.use(cookieParser());
 // eslint-disable-next-line no-unused-expressions
 app.static;
 
-app.use('/api', routes);
+app.use("/api", routes);
 // app.use('/api',keycloak.protect(), routes);
 
-app.set('port', process.env.PORT || 5000);
+app.set("port", process.env.PORT || 5000);
 
-http.createServer(app).listen(app.get('port'), () => {
-  console.log('===============================================');
-  figlet('cws - api', (err, data) => {
+http.createServer(app).listen(app.get("port"), () => {
+  console.log("===============================================");
+  figlet("cws - api", (err, data) => {
     if (err) {
-      console.log('Something went wrong...');
+      console.log("Something went wrong...");
       console.dir(err);
       return;
     }
     console.log(data);
-    console.log(`Server listening on port ${app.get('port')}`);
-    console.log('==============================================='); 
+    console.log(`Server listening on port ${app.get("port")}`);
+    console.log("===============================================");
   });
 });
 
 module.exports = app;
-
