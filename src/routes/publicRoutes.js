@@ -114,6 +114,9 @@ routes.delete("/post/delete/:id", (req, res) => {
 });
 
 routes.post("/paper/results", (req, res) => {
+  console.log("====================================");
+  console.log(req.body);
+  console.log("====================================");
   addResult(req.body, (result) => {
     res.status(result.statusCode).send(result.body);
   });
